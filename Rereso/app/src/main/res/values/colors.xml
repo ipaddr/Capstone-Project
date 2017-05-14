@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#388E3C</color>
+    <color name="colorAccent">#4e342e</color>
+
+    <!-- Additional color pallate -->
+    <color name="lightPrimaryColor">#C8E6C9</color>
+    <color name="textPrimaryColor">#FFFFFF</color>
+    <color name="primaryTextColor">#212121</color>
+    <color name="secondaryTextColor">#757575</color>
+    <color name="dividerColor">#BDBDBD</color>
+</resources>

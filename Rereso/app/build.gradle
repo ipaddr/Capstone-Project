@@ -1,0 +1,139 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "id.ipaddr.android.rereso"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // If you need to add more flavors, consider using flavor dimensions.
+    productFlavors {
+        mock {
+
+        }
+        prod {
+
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // The android stuff
+    // App's dependencies, including test
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    compile "com.google.guava:guava:$rootProject.guavaVersion"
+
+    // constrain layout
+    compile "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
+
+    // espresso test networking test
+    compile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
+
+    // The framework stuff
+    // Reactive dependencies
+    compile "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    compile "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+
+    // google json dependencies
+    compile "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    // Firebase dependencies
+    compile "com.google.firebase:firebase-core:$rootProject.firebaseVersion"
+    compile "com.google.firebase:firebase-database:$rootProject.firebaseVersion"
+    compile "com.google.firebase:firebase-storage:$rootProject.firebaseVersion"
+    compile "com.google.firebase:firebase-auth:$rootProject.firebaseVersion"
+    compile "com.firebaseui:firebase-ui-auth:$rootProject.firebaseUIAuthVersion"
+    compile "com.google.firebase:firebase-messaging:$rootProject.firebaseVersion"
+    compile "com.google.firebase:firebase-config:$rootProject.firebaseVersion"
+
+    // Multidex
+    compile "com.android.support:multidex:1.0.1"
+
+    // com.square.leakcanary
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryAndroid"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryAndroid"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryAndroid"
+
+    // android signature pad
+    compile "com.github.gcacace:signature-pad:$rootProject.androidSignaturePad"
+
+    // degger 2
+    // apt command comes from the android-apt plugin
+    compile "com.google.dagger:dagger:$rootProject.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    provided "javax.annotation:jsr250-api:$rootProject.jsr250_apiVersion"
+
+    // Butterknife
+    compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+    // image loading
+    compile "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+
+    // network
+    compile "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+
+    // stepper
+    compile "com.stepstone.stepper:material-stepper:$rootProject.materialStepperVersion"
+
+    // the test stuff
+    // Dependencies for local unit tests
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+    androidTestCompile "com.android.support.test:rules:$rootProject.ext.runnerVersion"
+
+    // Dependencies for Android unit tests
+    androidTestCompile "junit:junit:$rootProject.ext.junitVersion"
+    androidTestCompile "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+
+    // Espresso UI Testing
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
+
+    // Resolve conflicts between main and test APK:
+    androidTestCompile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:design:$rootProject.supportLibraryVersion"
+}

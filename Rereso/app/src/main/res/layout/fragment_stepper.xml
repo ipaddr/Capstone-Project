@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_kk_name"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_kk_name"
+                android:hint="@string/patriarch_name"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_kk_num"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_kk_num"
+                android:hint="@string/patriarch_card_number"
+                android:inputType="number"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_nik"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_nik"
+                android:hint="@string/nik"
+                android:inputType="number"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_name"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_name"
+                android:hint="@string/full_name"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sex"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:text="@string/sex"
+                style="@style/AppTheme.StepView.AppCompatTextView"/>
+
+            <RadioGroup
+                android:id="@+id/rg_sex"
+                android:orientation="horizontal"
+                style="@style/AppTheme.StepView.RadioGroup">
+
+                <RadioButton
+                    android:id="@+id/rg_sex_rb_male"
+                    android:text="@string/male"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+                <RadioButton
+                    android:id="@+id/rg_sex_rb_female"
+                    android:text="@string/female"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_born_place"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/born_at"
+                style="@style/AppTheme.StepView.AppCompatTextView"/>
+
+            <RadioGroup
+                android:id="@+id/rg_born_place"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5">
+
+                <RadioButton
+                    android:id="@+id/rg_born_place_rs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/text_size_name"
+                    android:text="@string/hospital"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_place_puskesmas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/text_size_name"
+                    android:text="@string/puskesmas"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_place_polindes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/text_size_name"
+                    android:text="@string/polindas"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_place_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/text_size_name"
+                    android:text="@string/home"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_place_others"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/text_size_name"
+                    android:text="@string/others"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_born_location"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_born_location"
+                android:hint="@string/born_location"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_born_day"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_born_day"
+                android:hint="@string/born_day"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_born_date"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_born_date"
+                android:hint="@string/born_date"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_born_time"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_born_time"
+                android:hint="@string/born_time"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_age"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_age"
+                android:hint="@string/age"
+                android:inputType="number"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_job"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_job"
+                android:hint="@string/job"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_address"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_address"
+                android:hint="@string/address_street_detail"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_village"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_village"
+                android:hint="@string/address_village_detail"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_subdistrict"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_subdistrict"
+                android:hint="@string/address_subdistrict_detail"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_district"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_district"
+                android:hint="@string/address_district_detail"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_state"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_state"
+                android:hint="@string/address_state_detail"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_nationality"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:text="@string/nationality"
+                style="@style/AppTheme.StepView.AppCompatTextView"/>
+
+            <RadioGroup
+                android:id="@+id/rg_nationality"
+                android:orientation="horizontal"
+                style="@style/AppTheme.StepView.RadioGroup">
+
+                <RadioButton
+                    android:id="@+id/rg_nationality_wni"
+                    android:text="@string/wni"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+                <RadioButton
+                    android:id="@+id/rg_nationality_wna"
+                    android:text="@string/wna"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_ethnic"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_ethnic"
+                android:hint="@string/ethnic_group"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_married_date"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_married_date"
+                android:hint="@string/married_date"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_born_type"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:text="@string/born_type"
+                style="@style/AppTheme.StepView.AppCompatTextView"/>
+
+            <RadioGroup
+                android:id="@+id/rg_born_type"
+                android:orientation="vertical"
+                style="@style/AppTheme.StepView.RadioGroup">
+
+                <RadioButton
+                    android:id="@+id/rg_born_type_single"
+                    android:text="@string/single"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_type_twin"
+                    android:text="@string/twin"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_type_triplets"
+                    android:text="@string/triplets"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_type_quadruplets"
+                    android:text="@string/quadruplets"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_type_others"
+                    android:text="@string/others"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_born_seq"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_born_seq"
+                android:hint="@string/born_seq"
+                android:inputType="number"
+                android:maxLength="1"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_born_helper"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:text="@string/born_helper"
+                style="@style/AppTheme.StepView.AppCompatTextView"/>
+
+            <RadioGroup
+                android:id="@+id/rg_born_helper"
+                android:orientation="vertical"
+                style="@style/AppTheme.StepView.RadioGroup">
+
+                <RadioButton
+                    android:id="@+id/rg_born_helper_docter"
+                    android:text="@string/docter"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_helper_tocologist_nurse"
+                    android:text="@string/tocologist_nurse"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_helper_midwife"
+                    android:text="@string/midwife"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+                <RadioButton
+                    android:id="@+id/rg_born_helper_others"
+                    android:text="@string/others"
+                    style="@style/AppTheme.StepView.RadioButton"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_baby_weight"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_baby_weight"
+                android:hint="@string/baby_weight"
+                android:inputType="number"
+                android:maxLength="1"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_baby_height"
+            style="@style/AppTheme.StepView">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/acet_baby_height"
+                android:hint="@string/baby_height"
+                android:inputType="number"
+                android:maxLength="1"
+                style="@style/AppTheme.StepView.EditText"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sig_first_spectator"
+            style="@style/AppTheme.StepView.Signature">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/clear_signature_first_spectator"
+                android:text="@string/first_spectator_signature"
+                style="@style/AppTheme.StepView.AppCompatTextView.Signature"/>
+
+            <com.github.gcacace.signaturepad.views.SignaturePad
+                android:id="@+id/signature_first_spectator"
+                style="@style/AppTheme.Signature"
+                app:penColor="@android:color/black"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/acb_clear_sig_first_spectator"
+                    style="@style/AppTheme.AppCompatButton"
+                    android:text="@string/clear"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sig_second_spectator"
+            style="@style/AppTheme.StepView.Signature">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/clear_signature_second_spectator"
+                android:text="@string/second_spectator_signature"
+                style="@style/AppTheme.StepView.AppCompatTextView.Signature"/>
+
+            <com.github.gcacace.signaturepad.views.SignaturePad
+                android:id="@+id/signature_second_spectator"
+                style="@style/AppTheme.Signature"
+                app:penColor="@android:color/black"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/acb_clear_sig_second_spectator"
+                    style="@style/AppTheme.AppCompatButton"
+                    android:text="@string/clear"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sig_rapporteur"
+            style="@style/AppTheme.StepView.Signature">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/clear_signature_rapporteur"
+                android:text="@string/rapporteur_signature"
+                style="@style/AppTheme.StepView.AppCompatTextView.Signature"/>
+
+            <com.github.gcacace.signaturepad.views.SignaturePad
+                android:id="@+id/signature_rapporteur"
+                style="@style/AppTheme.Signature"
+                app:penColor="@android:color/black"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/acb_clear_sig_rapporture"
+                    style="@style/AppTheme.AppCompatButton"
+                    android:text="@string/clear"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,121 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.StepView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/margin_text_view_name</item>
+            <!--<item name="android:background">@android:color/white</item>-->
+            <!--<item name="android:elevation">@dimen/card_view_elevation</item>-->
+    </style>
+
+    <style name="AppTheme.StepView.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_name</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="AppTheme.StepView.AppCompatTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:layout_marginLeft">@dimen/activity_margin</item>
+        <item name="android:layout_marginStart">@dimen/activity_margin</item>
+        <item name="android:textSize">@dimen/text_size_name</item>
+    </style>
+
+    <style name="AppTheme.StepView.RadioGroup">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">5</item>
+    </style>
+
+    <style name="AppTheme.StepView.RadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/text_size_name</item>
+    </style>
+
+    <style name="AppTheme.StepView.Signature">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/signature_height</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_margin">@dimen/margin_text_view_img_title</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:elevation">@dimen/card_view_elevation</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="AppTheme.StepView.AppCompatTextView.Signature">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginLeft">@dimen/activity_margin</item>
+        <item name="android:layout_marginStart">@dimen/activity_margin</item>
+        <item name="android:textSize">@dimen/text_size_signature</item>
+    </style>
+
+    <style name="AppTheme.Signature">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">5</item>
+    </style>
+
+    <style name="AppTheme.AppCompatButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="AppTheme.ProgressBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="AppTheme.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="AppTheme.TextViewHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/header_margin</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@android:color/background_light</item>
+    </style>
+
+    <style name="AppTheme.TextViewTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/header_margin</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

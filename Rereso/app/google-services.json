@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "418919788843",
+    "firebase_url": "https://rereso-fc354.firebaseio.com",
+    "project_id": "rereso-fc354",
+    "storage_bucket": "rereso-fc354.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418919788843:android:0a962c12b595fbb7",
+        "android_client_info": {
+          "package_name": "id.ipaddr.android.rereso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418919788843-a5tffbmk29i2c5ag51vfvopm6f4a7nfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ipaddr.android.rereso",
+            "certificate_hash": "d96766a67b1fed00ebfddd088cab205bba1f79d0"
+          }
+        },
+        {
+          "client_id": "418919788843-cutor0utc3l8c2dnr1r43s7kv2qdmhjv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb07L2cwSk20311pI5bA7-xgqJDgw4D04"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418919788843-cutor0utc3l8c2dnr1r43s7kv2qdmhjv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/info_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context="id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDataGetDetailFragment"
+            tools:showIn="@layout/activity_certificateofbirthdata"
+            android:layout_margin="@dimen/activity_margin"
+            android:gravity="center"
+            android:background="@android:color/transparent">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_input_layout_dad_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_text_view_name">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/app_compat_edit_text_dad_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_name"
+                    android:hint="@string/father_name"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_input_layout_mom_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_text_view_name">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/app_compat_edit_text_mom_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_name"
+                    android:hint="@string/mother_name"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_input_layout_baby_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_text_view_name">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/app_compat_edit_text_baby_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_name"
+                    android:hint="@string/baby_name"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/doc_req_title"
+            android:text="@string/document_needed"
+            android:textSize="@dimen/text_size_document_title"
+            android:textAllCaps="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info_title"
+            android:layout_marginLeft="@dimen/margin_start"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginRight="@dimen/margin_start"
+            android:layout_marginEnd="@dimen/margin_start"
+            android:layout_marginTop="@dimen/margin_text_view_img_title"
+            android:layout_marginBottom="@dimen/margin_text_view_img_title"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_of_document_required"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/doc_req_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/margin_start"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginRight="@dimen/margin_start"
+            android:layout_marginEnd="@dimen/margin_start"
+            android:layout_marginTop="@dimen/margin_text_view_name"
+            android:layout_marginBottom="@dimen/margin_text_view_name"
+            android:background="@android:color/transparent"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/top_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/list_of_document_required"
+            android:layout_marginLeft="@dimen/margin_start"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginRight="@dimen/margin_start"
+            android:layout_marginEnd="@dimen/margin_start"
+            android:layout_marginTop="@dimen/margin_text_view_name"
+            android:layout_marginBottom="@dimen/margin_text_view_name"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/bottom_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top_button"
+            android:layout_marginLeft="@dimen/margin_start"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginRight="@dimen/margin_start"
+            android:layout_marginEnd="@dimen/margin_start"
+            android:layout_marginTop="@dimen/margin_text_view_name"
+            android:layout_marginBottom="@dimen/margin_text_view_name"/>
+
+        <include
+            layout="@layout/view_progress"
+            />
+
+        <include
+            layout="@layout/view_retry"
+            />
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

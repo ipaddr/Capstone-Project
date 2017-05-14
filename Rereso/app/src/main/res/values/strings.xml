@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name">Rereso</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="btn_text_load_data">Load Sample Data</string>
+    <string name="btn_text_retry">Retry</string>
+
+    <string name="view_text_email">Email:</string>
+    <string name="view_text_followers">Followers:</string>
+    <string name="view_text_description">Description:</string>
+
+    <string name="string_content_description">Non accessible view</string>
+
+    <!-- Activity certificate of birth data detail -->
+    <string name="father_name">Father name</string>
+    <string name="mother_name">Mother name</string>
+    <string name="baby_name">Baby name</string>
+    <string name="document_needed">Document needed:</string>
+
+    //Exception messages
+    <string name="exception_message_generic">There was an application error</string>
+    <string name="exception_message_no_connection">There is no internet connection</string>
+    <string name="exception_message_certificate_of_birth_not_found">Cannot retrieve certificate of birth data. Check your internet connection</string>
+
+    <!-- Stepper activity -->
+    <string name="patriarch_data">Patriarch data</string>
+    <string name="baby_data">Baby data</string>
+    <string name="father_data">Father data</string>
+    <string name="mother_data">Mother data</string>
+    <string name="rapporteur_data">Rapporteur data</string>
+    <string name="first_spectator_data">First spectator data</string>
+    <string name="second_spectator_data">Second spectator data</string>
+    <string name="photo_data">Photo data</string>
+    <string name="patriarch_name">Patriarch name</string>
+    <string name="patriarch_card_number">Patriarch card number</string>
+    <string name="full_name">Full name</string>
+    <string name="name">Name</string>
+    <string name="sex">Sex</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="born_at">Born at</string>
+    <string name="hospital">Hospital</string>
+    <string name="puskesmas">Puskesmas</string>
+    <string name="polindas">Polindas</string>
+    <string name="home">Home</string>
+    <string name="others">Others</string>
+    <string name="born_location">Born locaiton</string>
+    <string name="born_day">Born day</string>
+    <string name="born_date">Born date</string>
+    <string name="born_time">Born time</string>
+    <string name="born_type">Born type</string>
+    <string name="single">Single</string>
+    <string name="twin">Twin</string>
+    <string name="triplets">Triplets</string>
+    <string name="quadruplets">Quadruplets</string>
+    <string name="born_seq">Born sequence</string>
+    <string name="born_helper">Born helper</string>
+    <string name="docter">Doctor</string>
+    <string name="tocologist_nurse">Tocologist / Nurse</string>
+    <string name="midwife">Midwife</string>
+    <string name="baby_weight">Baby weight</string>
+    <string name="baby_height">Baby height</string>
+    <string name="nik">NIK</string>
+    <string name="age">Age</string>
+    <string name="job">Job</string>
+    <string name="address_street_detail">Address street detail</string>
+    <string name="address_village_detail">Address village detail</string>
+    <string name="address_subdistrict_detail">Address subdistrict detail</string>
+    <string name="address_district_detail">Address district detail</string>
+    <string name="address_state_detail">Address state detail</string>
+    <string name="nationality">Nationality</string>
+    <string name="wni">WNI</string>
+    <string name="wna">WNA</string>
+    <string name="ethnic_group">Ethnic group</string>
+    <string name="married_date">Married date</string>
+    <string name="signature_data">Signature data</string>
+    <string name="rapporteur_signature">Rapporteur signature</string>
+    <string name="first_spectator_signature">First signature</string>
+    <string name="second_spectator_signature">Second signature</string>
+    <string name="clear_signature">Clear signature</string>
+    <string name="clear">Clear</string>
+    <string name="save">Save</string>
+
+    <!-- String for saving doc requirement -->
+    <string name="household_recommendation_letter">Household Recommendation Letter</string>
+    <string name="family_identity_card">Family identity card</string>
+    <string name="father_id_card">Father Id card</string>
+    <string name="mother_id_card">Mother Id card</string>
+    <string name="marital_certificate_letter">Marital certificate letter</string>
+    <string name="father_certificate_of_birth">Father certificate Of birth</string>
+    <string name="mother_certificate_of_birth">Mother certificate Of birth</string>
+    <string name="father_passport">Father passport</string>
+    <string name="mother_passport">Mother passport</string>
+    <string name="first_spectator_id_card">First spectator id card</string>
+    <string name="second_spectator_id_card">Second spectator id card</string>
+    <string name="police_certificate_for_unfamiliy_baby">Police certificate for unfamiliy baby</string>
+    <string name="social_services_certificate_for_vulnerable_residents">Social services certificate for vulnerable residents</string>
+    <string name="img_of_certificate_of_birth_form">Image of certificate of birth form</string>
+</resources>

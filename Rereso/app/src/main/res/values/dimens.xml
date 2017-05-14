@@ -1,0 +1,36 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--User Header stuff-->
+    <dimen name="header_text_size">26sp</dimen>
+    <dimen name="header_margin">5dp</dimen>
+    <dimen name="iv_cover_height">140dp</dimen>
+
+    <!--Listview rows stuff-->
+    <dimen name="lv_row_padding">5dp</dimen>1
+    <dimen name="lv_row_text_size">12sp</dimen>
+    <dimen name="lv_row_icon_width">68dp</dimen>
+    <dimen name="lv_row_icon_padding">5dp</dimen>
+
+    <!-- cardview on row staff-->
+    <dimen name="card_view_margin">8dp</dimen>
+    <dimen name="card_view_elevation">8dp</dimen>
+
+    <!-- Layout activity_certificateofbirthdatadetail -->
+    <dimen name="margin_start">8dp</dimen>
+    <dimen name="margin_end">8dp</dimen>
+    <dimen name="margin_text_view_name">8dp</dimen>
+    <dimen name="margin_text_view_img_title">16dp</dimen>
+    <dimen name="text_size_name">18sp</dimen>
+    <dimen name="text_size_document_title">24sp</dimen>
+
+    <dimen name="photos_list_spacing">16dp</dimen>
+
+    <dimen name="signature_height">180dp</dimen>
+    <dimen name="text_size_signature">14sp</dimen>
+</resources>
