@@ -105,7 +105,7 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
     }
 
     public PhotoDetailFragment(){
-//        setRetainInstance(true);
+        setRetainInstance(true);
     }
 
     public static PhotoDetailFragment newInstance(){

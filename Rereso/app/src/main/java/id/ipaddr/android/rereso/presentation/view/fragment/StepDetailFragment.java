@@ -146,7 +146,7 @@ public class StepDetailFragment extends Fragment
     }
 
     public StepDetailFragment(){
-//        setRetainInstance(true);
+        setRetainInstance(true);
     }
 
     public static StepDetailFragment newInstance(int position){

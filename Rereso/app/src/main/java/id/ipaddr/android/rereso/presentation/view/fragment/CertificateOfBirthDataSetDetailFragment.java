@@ -1,6 +1,7 @@
 package id.ipaddr.android.rereso.presentation.view.fragment;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,6 +40,8 @@ public class CertificateOfBirthDataSetDetailFragment extends BaseFragment
 
     @BindView(R.id.stepperLayout)
     StepperLayout mStepperLayout;
+
+    private int position = 0;
 
     public CertificateOfBirthDataSetDetailFragment(){
         setRetainInstance(true);
@@ -96,16 +99,25 @@ public class CertificateOfBirthDataSetDetailFragment extends BaseFragment
         mCertificateOfBirthDataSetDetailPresenter.destroy();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putInt(POSITION, mStepperLayout.getCurrentStepPosition()).commit();
+    }
+
     private void setupStepper(View view){
         mStepperLayout = (StepperLayout) view.findViewById(R.id.stepperLayout);
         CertificateOfBirthDataStepperAdapter cbsa = new CertificateOfBirthDataStepperAdapter(getFragmentManager(), getActivity(), mCertificateOfBirthDataSetDetailPresenter);
+        position = PreferenceManager.getDefaultSharedPreferences(getActivity()).getInt(POSITION, position);
+//        cbsa.setCurrentPosition(position);
         mStepperLayout.setAdapter(cbsa);
+        mStepperLayout.setCurrentStepPosition(position);
         mStepperLayout.setListener(this);
     }
 
     @Override
     public void renderCertificateOfBirthData(CertificateOfBirthDataModel model){
-        Log.d(TAG, "renderCertificateOfBirthData");
+
     }
 
     @Override
