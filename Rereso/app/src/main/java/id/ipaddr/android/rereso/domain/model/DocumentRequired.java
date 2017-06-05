@@ -12,13 +12,8 @@ public final class DocumentRequired {
     private String documentImageBase64;
     private String documentImageURI;
     private boolean isRequired;
-
-    private DocumentRequired(Builder builder){
-        this.documentTitle = builder.documentTitle;
-        this.documentImageBase64 = builder.documentImageBase64;
-        this.documentImageURI = builder.documentImageURI;
-        this.isRequired = builder.isRequired;
-    }
+    private Bitmap bitmap;
+    private byte[] datas;
 
     public DocumentRequired(){}
 
@@ -66,29 +61,19 @@ public final class DocumentRequired {
     }
 
 
-    public static class Builder {
-        private String documentTitle;
-        private String documentImageBase64;
-        private String documentImageURI;
-        private boolean isRequired;
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
 
-        public String withDocumentTitle(){
-            return documentTitle;
-        }
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
 
-        public String withDocumentImageBase64() { return documentImageBase64; }
+    public byte[] getDatas() {
+        return datas;
+    }
 
-        public String withDocumentImageURI(){
-            return documentImageURI;
-        }
-
-        public boolean withIsRequired(){
-            return isRequired;
-        }
-
-        public DocumentRequired build(){
-            return new DocumentRequired(this);
-        }
-
+    public void setDatas(byte[] datas) {
+        this.datas = datas;
     }
 }

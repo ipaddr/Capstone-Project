@@ -60,18 +60,6 @@ public class StepDetailFragment extends Fragment
 
     public static final String POSITION = "id.ipaddr.android.rereso.presentation.view.fragment.StepDetailFragment.POSITION";
 
-    private CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
-    public void setCertificateOfBirthDataSetDetailPresenter(CertificateOfBirthDataSetDetailPresenter certificateOfBirthDataSetDetailPresenter) {
-        this.mCertificateOfBirthDataSetDetailPresenter = certificateOfBirthDataSetDetailPresenter;
-    }
-
-    private Subject subject  = PublishSubject.create();
-    private void send(Object o){
-        subject.onNext(o);
-    }
-
-    private int position = -1;
-
     @BindView(R.id.til_kk_name) TextInputLayout tilPatriarchName;
     @BindView(R.id.acet_kk_name) AppCompatEditText acetPatriarchName;
     @BindView(R.id.til_kk_num) TextInputLayout tilPatriarchNum;
@@ -150,7 +138,16 @@ public class StepDetailFragment extends Fragment
     @BindView(R.id.signature_rapporteur) SignaturePad sigRapporteurSpectator;
     @BindView(R.id.acb_clear_sig_rapporture) AppCompatButton acbRapportureSpectator;
 
-    public StepDetailFragment(){}
+    private int position = -1;
+
+    private CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
+    public void setCertificateOfBirthDataSetDetailPresenter(CertificateOfBirthDataSetDetailPresenter certificateOfBirthDataSetDetailPresenter) {
+        this.mCertificateOfBirthDataSetDetailPresenter = certificateOfBirthDataSetDetailPresenter;
+    }
+
+    public StepDetailFragment(){
+//        setRetainInstance(true);
+    }
 
     public static StepDetailFragment newInstance(int position){
         StepDetailFragment f = new StepDetailFragment();
@@ -163,9 +160,6 @@ public class StepDetailFragment extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null && getArguments().containsKey(POSITION)){
-            position = getArguments().getInt(POSITION);
-        }
     }
 
     @Nullable
@@ -205,22 +199,20 @@ public class StepDetailFragment extends Fragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         hideAllView();
+        if (getArguments() != null && getArguments().containsKey(POSITION))
+            position = getArguments().getInt(POSITION);
         if (position != -1){
             switch (position){
-                case 0:
-                    patriarchData();
+                case 0:patriarchData();
                     break;
-                case 1:
-                    babyData();
+                case 1:babyData();
                     break;
                 case 2:
-                case 3:
-                    fatherOrMotherData();
+                case 3:fatherOrMotherData();
                     break;
                 case 4:
                 case 5:
-                case 6:
-                    rapporteurOrSpectatorData();
+                case 6:rapporteurOrSpectatorData();
                     break;
                 case 7: signatureData();
                     break;

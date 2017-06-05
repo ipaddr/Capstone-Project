@@ -34,7 +34,7 @@ public class CertificateOfBirthDataStepperAdapter extends AbstractFragmentStepAd
     }
 
     @Override
-    public Step createStep(@IntRange(from = 0L) int position) {
+    public Step createStep(@IntRange(from = 0, to = 8) int position) {
         if (position == 8){
             PhotoDetailFragment f = PhotoDetailFragment.newInstance( );
             f.setCertificateOfBirthDataSetDetailPresenter(mCertificateOfBirthDataSetDetailPresenter);
@@ -52,7 +52,7 @@ public class CertificateOfBirthDataStepperAdapter extends AbstractFragmentStepAd
 
     @NonNull
     @Override
-    public StepViewModel getViewModel(@IntRange(from = 0L) int position) {
+    public StepViewModel getViewModel(@IntRange(from = 0, to = 8) int position) {
         switch (position){
             case 0: return new StepViewModel.Builder(context).setTitle(resources.getString(R.string.patriarch_data)).create();
             case 1: return new StepViewModel.Builder(context).setTitle(resources.getString(R.string.baby_data)).create();

@@ -73,7 +73,9 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
         DocumentRequired documentRequired = mCertificateOfBirthDataDocumentRequiredAdapter.getDocumentRequired(position);
 
         if (bitmap != null){
+            documentRequired.setBitmap(bitmap);
             byte [] datas = ImageUtil.convertBitmapToByte(bitmap);
+            documentRequired.setDatas(datas);
             String base64 = Base64.encodeToString(datas, Base64.DEFAULT);
             documentRequired.setDocumentImageBase64(base64);
         } else {
@@ -103,7 +105,7 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
     }
 
     public PhotoDetailFragment(){
-        setRetainInstance(true);
+//        setRetainInstance(true);
     }
 
     public static PhotoDetailFragment newInstance(){

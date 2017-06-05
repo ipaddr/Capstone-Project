@@ -77,17 +77,10 @@ public class CertificateOfBirthDataDocumentRequiredAdapter extends RecyclerView.
         final DocumentRequired documentRequiredModel = this.mDocumentRequiredsCollection.get(position);
         holder.docTitle.setText(documentRequiredModel.getDocumentTitle());
 
-        String base64 = documentRequiredModel.getDocumentImageBase64();
+        Bitmap bitmap = documentRequiredModel.getBitmap();
 
-        if (base64 != null || !TextUtils.isEmpty(base64)){
-            Glide.with(mContext)
-                    .load(ImageUtil.convertStringBase64ToByte(base64))
-                    .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher)
-                    .crossFade()
-                    .into(holder.docImageView);
-//            Bitmap bitmap = ImageUtil.fromStringBase64toBitmap(base64);
-//            holder.docImageView.setImageBitmap(bitmap);
+        if (bitmap != null){
+            holder.docImageView.setImageBitmap(bitmap);
             showIconToDeleteImage(holder, position);
         } else {
             holder.docImageView.setImageResource(R.mipmap.ic_launcher);

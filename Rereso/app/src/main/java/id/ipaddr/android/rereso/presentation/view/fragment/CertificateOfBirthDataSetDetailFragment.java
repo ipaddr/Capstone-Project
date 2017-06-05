@@ -32,6 +32,7 @@ public class CertificateOfBirthDataSetDetailFragment extends BaseFragment
     private static final String TAG = CertificateOfBirthDataSetDetailFragment.class.getSimpleName();
 
     private static final String ID = "id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDataSetDetailFragment.ID";
+    private static final String POSITION = "id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDataSetDetailFragment.POSITION";
 
     @Inject
     CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
@@ -39,7 +40,9 @@ public class CertificateOfBirthDataSetDetailFragment extends BaseFragment
     @BindView(R.id.stepperLayout)
     StepperLayout mStepperLayout;
 
-    public CertificateOfBirthDataSetDetailFragment(){ setRetainInstance(true);}
+    public CertificateOfBirthDataSetDetailFragment(){
+        setRetainInstance(true);
+    }
 
     public static CertificateOfBirthDataSetDetailFragment newFragment(){
         CertificateOfBirthDataSetDetailFragment f = new CertificateOfBirthDataSetDetailFragment();
@@ -95,13 +98,14 @@ public class CertificateOfBirthDataSetDetailFragment extends BaseFragment
 
     private void setupStepper(View view){
         mStepperLayout = (StepperLayout) view.findViewById(R.id.stepperLayout);
-        mStepperLayout.setAdapter(new CertificateOfBirthDataStepperAdapter(getFragmentManager(), getActivity(), mCertificateOfBirthDataSetDetailPresenter));
+        CertificateOfBirthDataStepperAdapter cbsa = new CertificateOfBirthDataStepperAdapter(getFragmentManager(), getActivity(), mCertificateOfBirthDataSetDetailPresenter);
+        mStepperLayout.setAdapter(cbsa);
         mStepperLayout.setListener(this);
     }
 
     @Override
     public void renderCertificateOfBirthData(CertificateOfBirthDataModel model){
-
+        Log.d(TAG, "renderCertificateOfBirthData");
     }
 
     @Override
