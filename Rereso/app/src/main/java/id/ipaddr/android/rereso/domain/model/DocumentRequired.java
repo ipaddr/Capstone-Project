@@ -2,6 +2,8 @@ package id.ipaddr.android.rereso.domain.model;
 
 import android.graphics.Bitmap;
 
+import java.io.File;
+
 /**
  * Created by iip on 3/26/17.
  */
@@ -14,6 +16,7 @@ public final class DocumentRequired {
     private boolean isRequired;
     private Bitmap bitmap;
     private byte[] datas;
+    private File file;
 
     public DocumentRequired(){}
 
@@ -75,5 +78,13 @@ public final class DocumentRequired {
 
     public void setDatas(byte[] datas) {
         this.datas = datas;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }

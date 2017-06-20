@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.util.Pair;
 import android.util.Base64;
 import android.util.Log;
 
@@ -17,12 +18,30 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by iip on 3/28/17.
  */
 
 public class ImageUtil {
+
+    public static Pair<String, File> createImageFile(Context context) throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        String mCurrentPhotoPath = image.getAbsolutePath();
+        return new Pair<>(mCurrentPhotoPath, image);
+    }
 
     public static byte[] convertBitmapToByte(Bitmap bitmap){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

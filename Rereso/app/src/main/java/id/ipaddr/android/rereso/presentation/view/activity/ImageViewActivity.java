@@ -30,9 +30,9 @@ public class ImageViewActivity extends AppCompatActivity {
 
         if (getIntent() != null){
             Intent intent = getIntent();
-            byte[] data = intent.getByteArrayExtra("data");
-            if (data != null){
-                Glide.with(this).load(data).placeholder(R.mipmap.ic_launcher).into(iv);
+            String uri = intent.getStringExtra("uri");
+            if (uri != null){
+                Glide.with(this).load(uri).placeholder(R.mipmap.ic_launcher).into(iv);
             }
         }
 

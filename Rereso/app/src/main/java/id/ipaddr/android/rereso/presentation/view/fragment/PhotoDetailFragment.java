@@ -2,11 +2,14 @@ package id.ipaddr.android.rereso.presentation.view.fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -24,6 +27,8 @@ import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,15 +79,15 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
             @Override
             public void onDocumentRequiredItemClicked(int position) {
                 DocumentRequired dr = mCertificateOfBirthDataDocumentRequiredAdapter.getDocumentRequired(position);
-                if (dr.getBitmap() == null)
+                if (dr.getDocumentImageURI() == null)
                     dispatchTakePictureIntent(position);
-                else viewImage(dr.getDatas());
+                else viewImage(dr.getDocumentImageURI());
             }
         };
 
-    private void viewImage(byte[] data){
+    private void viewImage(String uri){
         Intent intent = new Intent(getActivity(), ImageViewActivity.class);
-        intent.putExtra("data", data);
+        intent.putExtra("uri", uri);
         startActivity(intent);
     }
 
@@ -108,17 +113,40 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
     private void dispatchTakePictureIntent(int position) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            selectedDocumentPosition = position;
+            // Create the File where the photo should go
+            Pair<String, File> pair = null;
+            File photoFile = null;
+            try {
+                pair = ImageUtil.createImageFile(getActivity());
+                photoFile = pair.second;
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                Toast.makeText(getActivity(),getString(R.string.exception_message_generic), Toast.LENGTH_SHORT).show();
+            }
+
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                        "id.ipaddr.android.rereso",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                selectedDocumentPosition = position;
+                DocumentRequired documentRequired = mCertificateOfBirthDataDocumentRequiredAdapter.getDocumentRequired(selectedDocumentPosition);
+                documentRequired.setDocumentImageURI(pair.first);
+                documentRequired.setFile(photoFile);
+            }
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            setDocumentImageAtPosition(selectedDocumentPosition, imageBitmap);
+            if (data != null){
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                setDocumentImageAtPosition(selectedDocumentPosition, imageBitmap);
+            }
         }
         selectedDocumentPosition = -1;
     }
