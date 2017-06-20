@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_gravity="center"
     android:gravity="center"
     android:padding="8dp"
     android:elevation="8dp"
+    android:orientation="vertical"
     android:background="@android:color/white">
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/doc_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:gravity="center"
         android:textAllCaps="true"
-        android:textSize="@dimen/text_size_name"
+        android:textSize="@dimen/text_size_image_title"
         android:textStyle="bold"
         android:text="@string/app_name"/>
 
-    <ImageView
-        android:id="@+id/doc_image_view"
-        android:layout_below="@id/doc_title"
-        android:layout_centerInParent="true"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:gravity="center">
 
-    <android.support.design.widget.CheckableImageButton
-        android:id="@+id/doc_clickable_image_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_below="@id/doc_title"
-        android:layout_alignParentRight="true"
-        android:background="@android:color/holo_red_dark"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+        <ImageView
+            android:id="@+id/doc_image_view"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"/>
 
-</RelativeLayout>
+        <android.support.design.widget.CheckableImageButton
+            android:id="@+id/doc_clickable_image_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/holo_red_dark"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

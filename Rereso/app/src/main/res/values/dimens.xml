@@ -26,6 +26,7 @@
     <dimen name="margin_end">8dp</dimen>
     <dimen name="margin_text_view_name">8dp</dimen>
     <dimen name="margin_text_view_img_title">16dp</dimen>
+    <dimen name="text_size_image_title">14sp</dimen>
     <dimen name="text_size_name">18sp</dimen>
     <dimen name="text_size_document_title">24sp</dimen>
 

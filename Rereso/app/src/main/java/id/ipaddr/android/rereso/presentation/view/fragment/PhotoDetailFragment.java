@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +35,7 @@ import id.ipaddr.android.rereso.R;
 import id.ipaddr.android.rereso.domain.model.CertificateOfBirthData;
 import id.ipaddr.android.rereso.domain.model.DocumentRequired;
 import id.ipaddr.android.rereso.presentation.presenter.CertificateOfBirthDataSetDetailPresenter;
+import id.ipaddr.android.rereso.presentation.view.activity.ImageViewActivity;
 import id.ipaddr.android.rereso.presentation.view.adapter.CertificateOfBirthDataDocumentRequiredAdapter;
 import id.ipaddr.android.rereso.util.ImageUtil;
 import id.ipaddr.android.rereso.util.ItemDecorationAlbumColumns;
@@ -71,9 +73,18 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
 
             @Override
             public void onDocumentRequiredItemClicked(int position) {
-                dispatchTakePictureIntent(position);
+                DocumentRequired dr = mCertificateOfBirthDataDocumentRequiredAdapter.getDocumentRequired(position);
+                if (dr.getBitmap() == null)
+                    dispatchTakePictureIntent(position);
+                else viewImage(dr.getDatas());
             }
         };
+
+    private void viewImage(byte[] data){
+        Intent intent = new Intent(getActivity(), ImageViewActivity.class);
+        intent.putExtra("data", data);
+        startActivity(intent);
+    }
 
     private void setDocumentImageAtPosition(int position, Bitmap bitmap){
         DocumentRequired documentRequired = mCertificateOfBirthDataDocumentRequiredAdapter.getDocumentRequired(position);
@@ -85,6 +96,8 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
             String base64 = Base64.encodeToString(datas, Base64.DEFAULT);
             documentRequired.setDocumentImageBase64(base64);
         } else {
+            documentRequired.setBitmap(null);
+            documentRequired.setDatas(null);
             documentRequired.setDocumentImageBase64(null);
         }
 

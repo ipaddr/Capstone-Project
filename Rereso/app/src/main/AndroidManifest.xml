@@ -29,6 +29,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".presentation.view.activity.CertificateOfBirthDataSetDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".presentation.view.activity.ImageViewActivity"/>
 
         <!-- Widget -->
         <receiver android:name=".presentation.view.widget.ReresoAppWidgetProvider" >
