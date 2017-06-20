@@ -86,7 +86,6 @@ public class CertificateOfBirthDataDocumentRequiredAdapter extends RecyclerView.
                 .into(holder.docImageView);
 
         if (data != null){
-            holder.docTitle.setText("Berubah");
             showIconToDeleteImage(holder, position);
         } else {
             holder.docClickableImageButton.setVisibility(View.GONE);
