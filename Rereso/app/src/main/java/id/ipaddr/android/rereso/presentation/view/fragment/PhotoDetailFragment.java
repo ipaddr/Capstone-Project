@@ -104,6 +104,7 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
             documentRequired.setBitmap(null);
             documentRequired.setDatas(null);
             documentRequired.setDocumentImageBase64(null);
+            documentRequired.setDocumentImageURI(null);
         }
 
         mCertificateOfBirthDataDocumentRequiredAdapter.setDocumentRequired(position, documentRequired);
