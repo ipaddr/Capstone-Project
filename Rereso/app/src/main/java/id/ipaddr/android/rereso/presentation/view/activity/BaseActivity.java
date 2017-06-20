@@ -80,9 +80,9 @@ public abstract class BaseActivity extends AppCompatActivity implements OnAuthCa
      * @param containerViewId The container view to where add the fragment.
      * @param fragment The fragment to be added.
      */
-    protected void addFragment(int containerViewId, Fragment fragment) {
+    protected void addFragment(int containerViewId, Fragment fragment, String tag) {
         final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(containerViewId, fragment);
+        fragmentTransaction.add(containerViewId, fragment, tag);
         fragmentTransaction.commit();
     }
 

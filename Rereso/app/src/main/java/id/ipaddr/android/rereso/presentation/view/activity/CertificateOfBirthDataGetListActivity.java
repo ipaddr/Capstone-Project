@@ -25,12 +25,10 @@ public class CertificateOfBirthDataGetListActivity extends BaseActivity implemen
         HasComponent<CertificateOfBirthDataComponent>
         , CertificateOfBirthDataGetListFragment.CertificateOfBirthDataListListener{
 
-    void test(){
-        List<String> list = new ArrayList<String>();
-    }
-
     // logging variable purpose
     private final String TAG = CertificateOfBirthDataGetListActivity.class.getSimpleName();
+
+    private final String FRAGMENT_TAG = "CertificateOfBirthDataGetListActivity.FRAGMENT_TAG";
 
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, CertificateOfBirthDataGetListActivity.class);
@@ -53,7 +51,7 @@ public class CertificateOfBirthDataGetListActivity extends BaseActivity implemen
         super.onAuth(savedInstanceState);
         this.initializeInjector();
         if (savedInstanceState == null) {
-            addFragment(R.id.fragmentContainer, new CertificateOfBirthDataGetListFragment());
+            addFragment(R.id.fragmentContainer, new CertificateOfBirthDataGetListFragment(), FRAGMENT_TAG);
         }
     }
 

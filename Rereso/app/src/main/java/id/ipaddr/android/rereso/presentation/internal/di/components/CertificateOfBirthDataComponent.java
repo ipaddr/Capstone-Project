@@ -22,7 +22,6 @@ import id.ipaddr.android.rereso.presentation.internal.di.modules.ActivityModule;
 import id.ipaddr.android.rereso.presentation.internal.di.modules.CertificateOfBirthDataModul;
 import id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDataGetDetailFragment;
 import id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDataGetListFragment;
-import id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDataSetDetailFragment;
 
 /**
  * A scope {@link PerActivity} component.
@@ -33,5 +32,4 @@ import id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDat
 public interface CertificateOfBirthDataComponent extends ActivityComponent {
     void inject(CertificateOfBirthDataGetListFragment certificateOfBirthDataGetListFragment);
     void inject(CertificateOfBirthDataGetDetailFragment certificateOfBirthDataGetDetailFragment);
-    void inject(CertificateOfBirthDataSetDetailFragment certificateOfBirthDataSetDetailFragment);
 }

@@ -43,16 +43,14 @@ public class CertificateOfBirthDataDocumentRequiredAdapter extends RecyclerView.
     }
 
     private List<DocumentRequired> mDocumentRequiredsCollection;
-    private final LayoutInflater layoutInflater;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
 
     @Inject
     public CertificateOfBirthDataDocumentRequiredAdapter(Context context) {
         this.mContext = context;
-        this.layoutInflater =
-                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.mDocumentRequiredsCollection = Collections.emptyList();
+        if (mDocumentRequiredsCollection == null)
+            this.mDocumentRequiredsCollection = Collections.emptyList();
     }
 
     public DocumentRequired getDocumentRequired(int position){
@@ -69,7 +67,9 @@ public class CertificateOfBirthDataDocumentRequiredAdapter extends RecyclerView.
     }
 
     @Override public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = this.layoutInflater.inflate(R.layout.row_certificateofbirthdatadetail, parent, false);
+        LayoutInflater layoutInflater =
+                (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View view = layoutInflater.inflate(R.layout.row_certificateofbirthdatadetail, parent, false);
         return new UserViewHolder(view);
     }
 
@@ -77,13 +77,18 @@ public class CertificateOfBirthDataDocumentRequiredAdapter extends RecyclerView.
         final DocumentRequired documentRequiredModel = this.mDocumentRequiredsCollection.get(position);
         holder.docTitle.setText(documentRequiredModel.getDocumentTitle());
 
-        Bitmap bitmap = documentRequiredModel.getBitmap();
+        byte[] data = documentRequiredModel.getDatas();
 
-        if (bitmap != null){
-            holder.docImageView.setImageBitmap(bitmap);
+        Glide.with(mContext)
+                .load(data)
+                .centerCrop()
+                .placeholder(R.mipmap.ic_launcher)
+                .into(holder.docImageView);
+
+        if (data != null){
+            holder.docTitle.setText("Berubah");
             showIconToDeleteImage(holder, position);
         } else {
-            holder.docImageView.setImageResource(R.mipmap.ic_launcher);
             holder.docClickableImageButton.setVisibility(View.GONE);
         }
 

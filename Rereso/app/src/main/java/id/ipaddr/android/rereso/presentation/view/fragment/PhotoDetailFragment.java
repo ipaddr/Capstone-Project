@@ -26,6 +26,8 @@ import com.stepstone.stepper.VerificationError;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.ipaddr.android.rereso.R;
@@ -46,10 +48,14 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
 
     private List<DocumentRequired> documentRequireds;
 
+
+
     @BindView(R.id.rv_photo_detail)
     RecyclerView mPhotoRecyclerView;
 
+    @Inject
     CertificateOfBirthDataDocumentRequiredAdapter mCertificateOfBirthDataDocumentRequiredAdapter;
+
     private CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
     public void setCertificateOfBirthDataSetDetailPresenter(CertificateOfBirthDataSetDetailPresenter certificateOfBirthDataSetDetailPresenter) {
         this.mCertificateOfBirthDataSetDetailPresenter = certificateOfBirthDataSetDetailPresenter;
@@ -117,6 +123,7 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCertificateOfBirthDataDocumentRequiredAdapter = new CertificateOfBirthDataDocumentRequiredAdapter(getActivity());
+        mCertificateOfBirthDataDocumentRequiredAdapter.setDocumentRequiredCollection(initDocReq());
     }
 
     @Nullable
@@ -131,7 +138,6 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mCertificateOfBirthDataDocumentRequiredAdapter.setDocumentRequiredCollection(initDocReq());
     }
 
     private void setupRecyclerView() {
@@ -145,7 +151,7 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
                 column));
     }
 
-    private List<DocumentRequired> initDocReq(){
+    private List<DocumentRequired>  initDocReq(){
         documentRequireds = new ArrayList<>();
         documentRequireds.add(new DocumentRequired(getString(R.string.household_recommendation_letter), true));
         documentRequireds.add(new DocumentRequired(getString(R.string.family_identity_card), true));

@@ -476,6 +476,10 @@ public class StepDetailFragment extends Fragment
     }
 
     private boolean verifySignatureData(){
+
+        if (sigFirstSpectator.isEmpty() || sigSecondSpectator.isEmpty() || sigRapporteurSpectator.isEmpty())
+            return false;
+
         String sfs = sigFirstSpectator.getSignatureSvg();
         String sss = sigSecondSpectator.getSignatureSvg();
         String srs = sigRapporteurSpectator.getSignatureSvg();

@@ -33,10 +33,6 @@ public class CertificateOfBirthDataStepperAdapter extends AbstractFragmentStepAd
         mCertificateOfBirthDataSetDetailPresenter = certificateOfBirthDataSetDetailPresenter;
     }
 
-    public void setCurrentPosition(int position){
-        createStep(position);
-    }
-
     @Override
     public Step createStep(@IntRange(from = 0, to = 8) int position) {
         if (position == 8){

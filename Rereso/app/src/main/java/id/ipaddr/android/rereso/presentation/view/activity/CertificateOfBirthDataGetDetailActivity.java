@@ -21,6 +21,8 @@ public class CertificateOfBirthDataGetDetailActivity extends BaseActivity
     private static final String INTENT_EXTRA_PARAM_ID = "id.ipaddr.android.rereso.presentation.view.activity.CertificateOfBirthDataGetDetailActivity.INTENT_EXTRA_PARAM_ID";
     private static final String INSTANCE_STATE_PARAM_ID = "id.ipaddr.android.rereso.presentation.view.activity.CertificateOfBirthDataGetDetailActivity.INSTANCE_STATE_PARAM_ID";
 
+    private final String FRAGMENT_TAG = "CertificateOfBirthDataGetDetailActivity_FRAG";
+
     public static Intent getCallingIntent(Context context, String id) {
         Intent callingIntent = new Intent(context, CertificateOfBirthDataGetDetailActivity.class);
         callingIntent.putExtra(INTENT_EXTRA_PARAM_ID, id);
@@ -60,7 +62,7 @@ public class CertificateOfBirthDataGetDetailActivity extends BaseActivity
     private void initializeActivity(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             mId = getIntent().getStringExtra(INTENT_EXTRA_PARAM_ID);
-            addFragment(R.id.fragmentContainer, CertificateOfBirthDataGetDetailFragment.forCer(mId));
+            addFragment(R.id.fragmentContainer, CertificateOfBirthDataGetDetailFragment.forCer(mId), FRAGMENT_TAG);
         } else {
             mId = savedInstanceState.getString(INSTANCE_STATE_PARAM_ID);
         }
