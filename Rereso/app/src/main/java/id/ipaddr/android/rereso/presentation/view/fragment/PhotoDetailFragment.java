@@ -187,6 +187,21 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.bind(this, this.getView()).unbind();
+    }
+
+    @Override public void onDestroy() {
+        super.onDestroy();
+        this.mCertificateOfBirthDataSetDetailPresenter.destroy();
+    }
+
+    @Override public void onDetach() {
+        super.onDetach();
+        this.mCertificateOfBirthDataSetDetailPresenter = null;
+    }
+
     private void setupRecyclerView() {
         final int column = 2;
         mCertificateOfBirthDataDocumentRequiredAdapter.setOnItemClickListener(onItemClickListener);
@@ -262,8 +277,8 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
     }
 
     private boolean verifyDocumentRequired(DocumentRequired dr){
-        String base64 = dr.getDocumentImageBase64();
-        if (null == base64 || TextUtils.isEmpty(base64))
+        String sUri = dr.getDocumentImageURI();
+        if (null == sUri || TextUtils.isEmpty(sUri))
             return false;
         return true;
     }
@@ -293,8 +308,8 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
         Log.d(TAG, "onCompleteClicked");
         if (verifyAndSaveImageData()) {
             saveData();
-            callback.complete();
-            getActivity().finish();
+//            callback.complete();
+//            getActivity().finish();
         }
         else Toast.makeText(getActivity(), "Add detail", Toast.LENGTH_SHORT).show();
     }
@@ -305,12 +320,14 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
         callback.goToPrevStep();
     }
 
-    private void upload(StorageReference storageRef, DocumentRequired dr){
-        UploadTask uploadTask = storageRef.putFile(Uri.parse(dr.getDocumentImageURI()));
+    private UploadTask upload(StorageReference storageRef, DocumentRequired dr){
+        Uri uri = Uri.fromFile(new File(dr.getDocumentImageURI()));
+        StorageReference riversRef = storageRef.child("rereso-img/"+uri.getLastPathSegment());
+        UploadTask uploadTask = riversRef.putFile(uri);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                Log.d(TAG, "fail");
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -319,20 +336,22 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
                 dr.setDocumentImageURI(downloadUrl.toString());
             }
         });
+        return uploadTask;
     }
 
     private void saveImage(){
         List<UploadTask> uploadTasks = new ArrayList<>();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         for (DocumentRequired dr : documentRequireds){
-            upload(storageRef, dr);
+            if (dr.getDocumentImageURI() != null)
+                uploadTasks.add(upload(storageRef, dr));
         }
     }
 
     private void saveData(){
         saveImage();
-//        DatabaseReference dbr = FirebaseDatabase.getInstance().getReference(CertificateOfBirthData.class.getSimpleName());
-//        dbr.push().setValue(mCertificateOfBirthDataSetDetailPresenter.getCertificateOfBirthData());
+        DatabaseReference dbr = FirebaseDatabase.getInstance().getReference(CertificateOfBirthData.class.getSimpleName());
+        dbr.push().setValue(mCertificateOfBirthDataSetDetailPresenter.getCertificateOfBirthData());
     }
 
 }

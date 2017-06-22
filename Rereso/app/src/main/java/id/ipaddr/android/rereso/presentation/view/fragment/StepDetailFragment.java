@@ -223,6 +223,21 @@ public class StepDetailFragment extends BaseFragment
         }
     }
 
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.bind(this, this.getView()).unbind();
+    }
+
+    @Override public void onDestroy() {
+        super.onDestroy();
+        this.mCertificateOfBirthDataSetDetailPresenter.destroy();
+    }
+
+    @Override public void onDetach() {
+        super.onDetach();
+        this.mCertificateOfBirthDataSetDetailPresenter = null;
+    }
+
     private void hideAllView(){
         // Patriarch data
         tilPatriarchName.setVisibility(View.GONE);
