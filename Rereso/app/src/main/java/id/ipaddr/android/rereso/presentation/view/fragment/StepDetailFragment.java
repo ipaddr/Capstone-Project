@@ -25,6 +25,8 @@ import com.stepstone.stepper.VerificationError;
 
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.ipaddr.android.rereso.R;
@@ -39,6 +41,7 @@ import id.ipaddr.android.rereso.domain.model.ECitizenship;
 import id.ipaddr.android.rereso.domain.model.EPlaceOfBirth;
 import id.ipaddr.android.rereso.domain.model.ESex;
 import id.ipaddr.android.rereso.domain.model.ETypeOfBirth;
+import id.ipaddr.android.rereso.presentation.internal.di.components.CertificateOfBirthDataComponent;
 import id.ipaddr.android.rereso.presentation.presenter.CertificateOfBirthDataSetDetailPresenter;
 import id.ipaddr.android.rereso.util.DateUtil;
 import io.reactivex.Observable;
@@ -50,7 +53,7 @@ import io.reactivex.subjects.Subject;
  * Created by iip on 3/28/17.
  */
 
-public class StepDetailFragment extends Fragment
+public class StepDetailFragment extends BaseFragment
         implements
         BlockingStep
     , View.OnClickListener
@@ -140,10 +143,8 @@ public class StepDetailFragment extends Fragment
 
     private int position = -1;
 
-    private CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
-    public void setCertificateOfBirthDataSetDetailPresenter(CertificateOfBirthDataSetDetailPresenter certificateOfBirthDataSetDetailPresenter) {
-        this.mCertificateOfBirthDataSetDetailPresenter = certificateOfBirthDataSetDetailPresenter;
-    }
+    @Inject
+    CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
 
     public StepDetailFragment(){
         setRetainInstance(true);
@@ -160,6 +161,7 @@ public class StepDetailFragment extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getComponent(CertificateOfBirthDataComponent.class).inject(this);
     }
 
     @Nullable

@@ -25,7 +25,8 @@ public class CertificateOfBirthDataGetDetailPresenter implements Presenter {
     private final GetCertificateOfBirthDataDetail mGetCertificateOfBirthDataDetail;
     private final CertificateOfBirthDataModelDataMapper mCertificateOfBirthDataModelDataMapper;
 
-    @Inject public CertificateOfBirthDataGetDetailPresenter(GetCertificateOfBirthDataDetail getCertificateOfBirthDataDetail
+    @Inject
+    public CertificateOfBirthDataGetDetailPresenter(GetCertificateOfBirthDataDetail getCertificateOfBirthDataDetail
             , CertificateOfBirthDataModelDataMapper certificateOfBirthDataModelDataMapper){
         mGetCertificateOfBirthDataDetail = getCertificateOfBirthDataDetail;
         mCertificateOfBirthDataModelDataMapper = certificateOfBirthDataModelDataMapper;

@@ -15,6 +15,7 @@ import io.reactivex.Observable;
  */
 
 public class SetCertificateOfBirthDataDetail extends UseCase<CertificateOfBirthData, CertificateOfBirthData>  {
+
     private final CertificateOfBirthDataRepository mRepository;
 
     @Inject

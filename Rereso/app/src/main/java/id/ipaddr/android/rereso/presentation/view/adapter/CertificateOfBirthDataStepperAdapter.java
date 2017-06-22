@@ -25,23 +25,19 @@ import id.ipaddr.android.rereso.presentation.view.fragment.StepDetailFragment;
 public class CertificateOfBirthDataStepperAdapter extends AbstractFragmentStepAdapter {
 
     private Resources resources;
-    private CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
 
-    public CertificateOfBirthDataStepperAdapter(FragmentManager fm, Context ctx, CertificateOfBirthDataSetDetailPresenter certificateOfBirthDataSetDetailPresenter){
+    public CertificateOfBirthDataStepperAdapter(FragmentManager fm, Context ctx){
         super(fm, ctx);
         resources = context.getResources();
-        mCertificateOfBirthDataSetDetailPresenter = certificateOfBirthDataSetDetailPresenter;
     }
 
     @Override
     public Step createStep(@IntRange(from = 0, to = 8) int position) {
         if (position == 8){
-            PhotoDetailFragment f = PhotoDetailFragment.newInstance( );
-            f.setCertificateOfBirthDataSetDetailPresenter(mCertificateOfBirthDataSetDetailPresenter);
+            PhotoDetailFragment f = PhotoDetailFragment.newInstance();
             return f;
         }
         StepDetailFragment f = StepDetailFragment.newInstance(position);
-        f.setCertificateOfBirthDataSetDetailPresenter(mCertificateOfBirthDataSetDetailPresenter);
         return f;
     }
 

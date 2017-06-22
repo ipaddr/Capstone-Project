@@ -1,22 +1,13 @@
 package id.ipaddr.android.rereso.presentation.presenter;
 
-import android.util.Log;
-
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
 import javax.inject.Inject;
 
-import id.ipaddr.android.rereso.domain.interactor.GetCertificateOfBirthDataList;
+import id.ipaddr.android.rereso.domain.exception.DefaultErrorBundle;
+import id.ipaddr.android.rereso.domain.interactor.DefaultObserver;
+import id.ipaddr.android.rereso.domain.interactor.SetCertificateOfBirthDataDetail;
 import id.ipaddr.android.rereso.domain.model.CertificateOfBirthData;
 import id.ipaddr.android.rereso.presentation.mapper.CertificateOfBirthDataModelDataMapper;
 import id.ipaddr.android.rereso.presentation.view.CertificateOfBirthDataSetDetailView;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.subjects.PublishSubject;
-import io.reactivex.subjects.Subject;
 
 /**
  * Created by iip on 3/27/17.
@@ -26,39 +17,13 @@ public class CertificateOfBirthDataSetDetailPresenter implements Presenter {
 
     private static final String TAG = CertificateOfBirthDataSetDetailPresenter.class.getSimpleName();
 
-    public void save(){
-        Log.d(TAG, "save");
-    }
+    private CertificateOfBirthDataSetDetailView mCertificateOfBirthDataSetDetailView;
 
-    private CertificateOfBirthDataSetDetailView mCertificateOfBirthDataListView;
-
-    private Observer mySubscriber = new Observer() {
-
-        @Override
-        public void onSubscribe(Disposable d) {
-            Log.d(TAG, "onSubscribe");
-        }
-
-        @Override
-        public void onNext(Object o) {
-            Log.d(TAG, "onNext");
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            Log.d(TAG, "onError");
-        }
-
-        @Override
-        public void onComplete() {
-            Log.d(TAG, "onComplete");
-        }
-    };
-
-    private final GetCertificateOfBirthDataList mGetCertificateOfBirthDataList;
+    private final SetCertificateOfBirthDataDetail mSetCertificateOfBirthDataDetail;
     private final CertificateOfBirthDataModelDataMapper mCertificateOfBirthDataModelDataMapper;
     private CertificateOfBirthData mCertificateOfBirthData;
-    public CertificateOfBirthData getCertificateOfBirthData() {
+
+    public synchronized CertificateOfBirthData getCertificateOfBirthData() {
         if (mCertificateOfBirthData == null)
             mCertificateOfBirthData = new CertificateOfBirthData();
         return mCertificateOfBirthData;
@@ -69,10 +34,18 @@ public class CertificateOfBirthDataSetDetailPresenter implements Presenter {
     }
 
     @Inject
-    public CertificateOfBirthDataSetDetailPresenter(GetCertificateOfBirthDataList certificateOfBirthDataList,
+    public CertificateOfBirthDataSetDetailPresenter(SetCertificateOfBirthDataDetail setCertificateOfBirthDataDetail,
                                                   CertificateOfBirthDataModelDataMapper certificateOfBirthDataModelDataMapper){
-        mGetCertificateOfBirthDataList = certificateOfBirthDataList;
+        mSetCertificateOfBirthDataDetail = setCertificateOfBirthDataDetail;
         mCertificateOfBirthDataModelDataMapper = certificateOfBirthDataModelDataMapper;
+    }
+
+    /**
+     * Initializes the presenter by showing/hiding proper views
+     * and retrieving certificate of data details.
+     */
+    public void initialize(){
+        this.setCertificateOfBirthDataDetail();
     }
 
     @Override
@@ -87,11 +60,29 @@ public class CertificateOfBirthDataSetDetailPresenter implements Presenter {
 
     @Override
     public void destroy() {
-
+        mSetCertificateOfBirthDataDetail.dispose();
+        mCertificateOfBirthDataSetDetailView = null;
     }
 
-    public Observer getObserver(){
-        return mySubscriber;
+    private void setCertificateOfBirthDataDetail(){
+        mSetCertificateOfBirthDataDetail.execute(new CertificateOfBirthDataDetailObserver(), null);
+    }
+
+    private final class CertificateOfBirthDataDetailObserver extends DefaultObserver<CertificateOfBirthData> {
+        @Override
+        public void onError(Throwable exception) {
+            super.onError(exception);
+        }
+
+        @Override
+        public void onNext(CertificateOfBirthData certificateOfBirthData) {
+            super.onNext(certificateOfBirthData);
+        }
+
+        @Override
+        public void onComplete() {
+            super.onComplete();
+        }
     }
 
 }

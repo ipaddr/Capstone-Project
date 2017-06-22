@@ -7,10 +7,5 @@ import id.ipaddr.android.rereso.presentation.model.CertificateOfBirthDataModel;
  */
 
 public interface CertificateOfBirthDataSetDetailView {
-    /**
-     * Render a user in the UI.
-     *
-     * @param model The {@link CertificateOfBirthDataModel} that will be shown.
-     */
-    void renderCertificateOfBirthData(CertificateOfBirthDataModel model);
+    void setupStepper();
 }

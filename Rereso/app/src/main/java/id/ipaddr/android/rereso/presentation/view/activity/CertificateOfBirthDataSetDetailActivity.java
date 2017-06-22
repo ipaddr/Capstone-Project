@@ -12,10 +12,12 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import id.ipaddr.android.rereso.R;
+import id.ipaddr.android.rereso.domain.model.CertificateOfBirthData;
 import id.ipaddr.android.rereso.presentation.internal.di.HasComponent;
 import id.ipaddr.android.rereso.presentation.internal.di.components.CertificateOfBirthDataComponent;
 import id.ipaddr.android.rereso.presentation.internal.di.components.DaggerCertificateOfBirthDataComponent;
 import id.ipaddr.android.rereso.presentation.presenter.CertificateOfBirthDataSetDetailPresenter;
+import id.ipaddr.android.rereso.presentation.view.CertificateOfBirthDataSetDetailView;
 import id.ipaddr.android.rereso.presentation.view.adapter.CertificateOfBirthDataStepperAdapter;
 
 /**
@@ -23,7 +25,7 @@ import id.ipaddr.android.rereso.presentation.view.adapter.CertificateOfBirthData
  */
 
 public class CertificateOfBirthDataSetDetailActivity extends BaseActivity
-        implements HasComponent<CertificateOfBirthDataComponent>{
+        implements HasComponent<CertificateOfBirthDataComponent>, CertificateOfBirthDataSetDetailView{
 
     private static final String TAG = CertificateOfBirthDataSetDetailActivity.class.getSimpleName();
 
@@ -44,11 +46,10 @@ public class CertificateOfBirthDataSetDetailActivity extends BaseActivity
     @BindView(R.id.stepperLayout)
     StepperLayout mStepperLayout;
 
-    @Inject
-    CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
-
-    private void setupStepper(){
-        CertificateOfBirthDataStepperAdapter cbsa = new CertificateOfBirthDataStepperAdapter(getSupportFragmentManager(), this, mCertificateOfBirthDataSetDetailPresenter);
+    @Override
+    public void setupStepper(){
+        CertificateOfBirthDataStepperAdapter cbsa
+                = new CertificateOfBirthDataStepperAdapter(getSupportFragmentManager(), this);
         mStepperLayout.setAdapter(cbsa);
     }
 

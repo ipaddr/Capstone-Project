@@ -21,8 +21,14 @@ import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
@@ -39,6 +45,7 @@ import butterknife.ButterKnife;
 import id.ipaddr.android.rereso.R;
 import id.ipaddr.android.rereso.domain.model.CertificateOfBirthData;
 import id.ipaddr.android.rereso.domain.model.DocumentRequired;
+import id.ipaddr.android.rereso.presentation.internal.di.components.CertificateOfBirthDataComponent;
 import id.ipaddr.android.rereso.presentation.presenter.CertificateOfBirthDataSetDetailPresenter;
 import id.ipaddr.android.rereso.presentation.view.activity.ImageViewActivity;
 import id.ipaddr.android.rereso.presentation.view.adapter.CertificateOfBirthDataDocumentRequiredAdapter;
@@ -49,7 +56,7 @@ import id.ipaddr.android.rereso.util.ItemDecorationAlbumColumns;
  * Created by iip on 3/30/17.
  */
 
-public class PhotoDetailFragment extends Fragment implements BlockingStep {
+public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
 
     private static final String TAG = PhotoDetailFragment.class.getSimpleName();
 
@@ -62,11 +69,8 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
 
     @Inject
     CertificateOfBirthDataDocumentRequiredAdapter mCertificateOfBirthDataDocumentRequiredAdapter;
-
-    private CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
-    public void setCertificateOfBirthDataSetDetailPresenter(CertificateOfBirthDataSetDetailPresenter certificateOfBirthDataSetDetailPresenter) {
-        this.mCertificateOfBirthDataSetDetailPresenter = certificateOfBirthDataSetDetailPresenter;
-    }
+    @Inject
+    CertificateOfBirthDataSetDetailPresenter mCertificateOfBirthDataSetDetailPresenter;
 
     private int selectedDocumentPosition = -1;
     private CertificateOfBirthDataDocumentRequiredAdapter.OnItemClickListener onItemClickListener =
@@ -164,6 +168,7 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getComponent(CertificateOfBirthDataComponent.class).inject(this);
         mCertificateOfBirthDataDocumentRequiredAdapter = new CertificateOfBirthDataDocumentRequiredAdapter(getActivity());
         mCertificateOfBirthDataDocumentRequiredAdapter.setDocumentRequiredCollection(initDocReq());
     }
@@ -213,7 +218,6 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
     }
 
     private boolean verifyAndSaveImageData(){
-        CertificateOfBirthData cd = mCertificateOfBirthDataSetDetailPresenter.getCertificateOfBirthData();
 
         DocumentRequired houseHoldRecommLetter = documentRequireds.get(0);
         DocumentRequired familyIdentityCard = documentRequireds.get(1);
@@ -230,6 +234,7 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
         DocumentRequired socialServiceCertificate = documentRequireds.get(12);
         DocumentRequired imgOfCertificateOfBirthForm = documentRequireds.get(13);
 
+        CertificateOfBirthData cd = mCertificateOfBirthDataSetDetailPresenter.getCertificateOfBirthData();
 
         if (verifyDocumentRequired(houseHoldRecommLetter) && verifyDocumentRequired(familyIdentityCard) && verifyDocumentRequired(fatherIdCard)
                 && verifyDocumentRequired(motherIdCard) && verifyDocumentRequired(maritalCertificateLetter) && verifyDocumentRequired(fatherCertificateLetter)
@@ -300,9 +305,34 @@ public class PhotoDetailFragment extends Fragment implements BlockingStep {
         callback.goToPrevStep();
     }
 
+    private void upload(StorageReference storageRef, DocumentRequired dr){
+        UploadTask uploadTask = storageRef.putFile(Uri.parse(dr.getDocumentImageURI()));
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                dr.setDocumentImageURI(downloadUrl.toString());
+            }
+        });
+    }
+
+    private void saveImage(){
+        List<UploadTask> uploadTasks = new ArrayList<>();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        for (DocumentRequired dr : documentRequireds){
+            upload(storageRef, dr);
+        }
+    }
+
     private void saveData(){
-        DatabaseReference dbr = FirebaseDatabase.getInstance().getReference(CertificateOfBirthData.class.getSimpleName());
-        dbr.push().setValue(mCertificateOfBirthDataSetDetailPresenter.getCertificateOfBirthData());
+        saveImage();
+//        DatabaseReference dbr = FirebaseDatabase.getInstance().getReference(CertificateOfBirthData.class.getSimpleName());
+//        dbr.push().setValue(mCertificateOfBirthDataSetDetailPresenter.getCertificateOfBirthData());
     }
 
 }

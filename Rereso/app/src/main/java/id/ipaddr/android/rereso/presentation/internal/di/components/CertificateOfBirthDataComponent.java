@@ -20,8 +20,11 @@ import dagger.Component;
 import id.ipaddr.android.rereso.presentation.internal.di.PerActivity;
 import id.ipaddr.android.rereso.presentation.internal.di.modules.ActivityModule;
 import id.ipaddr.android.rereso.presentation.internal.di.modules.CertificateOfBirthDataModul;
+import id.ipaddr.android.rereso.presentation.view.activity.CertificateOfBirthDataSetDetailActivity;
 import id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDataGetDetailFragment;
 import id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDataGetListFragment;
+import id.ipaddr.android.rereso.presentation.view.fragment.PhotoDetailFragment;
+import id.ipaddr.android.rereso.presentation.view.fragment.StepDetailFragment;
 
 /**
  * A scope {@link PerActivity} component.
@@ -32,4 +35,6 @@ import id.ipaddr.android.rereso.presentation.view.fragment.CertificateOfBirthDat
 public interface CertificateOfBirthDataComponent extends ActivityComponent {
     void inject(CertificateOfBirthDataGetListFragment certificateOfBirthDataGetListFragment);
     void inject(CertificateOfBirthDataGetDetailFragment certificateOfBirthDataGetDetailFragment);
+    void inject(StepDetailFragment stepDetailFragment);
+    void inject(PhotoDetailFragment photoDetailFragment);
 }
