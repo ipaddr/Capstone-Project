@@ -15,6 +15,7 @@ import id.ipaddr.android.rereso.data.database.CertificateOfBirthDataDatabase;
 import id.ipaddr.android.rereso.data.database.DbContract;
 import id.ipaddr.android.rereso.data.entity.CertificateOfBirthDataEntity;
 import id.ipaddr.android.rereso.data.repository.datasource.CertificateOfBirthDataDataStore;
+import id.ipaddr.android.rereso.domain.model.DocumentRequired;
 import io.reactivex.Observable;
 
 /**

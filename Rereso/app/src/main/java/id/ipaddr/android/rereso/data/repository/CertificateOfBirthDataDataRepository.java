@@ -78,7 +78,7 @@ public class CertificateOfBirthDataDataRepository implements CertificateOfBirthD
 //        final CertificateOfBirthDataDataStore dataStore = mDataStoreFactory.createCloudDataStoreFromFirebaseDatabase();
 //        final CertificateOfBirthDataEntity entity = new CertificateOfBirthDataEntity(certificateOfBirthData);
 //        return dataStore.setCertificateOfBirthDataEntity(entity).map(mEntityDataMapper::transform);
-        final CertificateOfBirthDataDataStore dataStore = mDataStoreFactory.createCloudDataStoreFromDatabase();
+        final CertificateOfBirthDataDataStore dataStore = mDataStoreFactory.createCloudDataStoreFromFirebaseDatabase();
         final CertificateOfBirthDataEntity entity = new CertificateOfBirthDataEntity(certificateOfBirthData);
         return dataStore.setCertificateOfBirthDataEntity(entity).map(mEntityDataMapper::transform);
     }

@@ -8,6 +8,7 @@ import id.ipaddr.android.rereso.data.cache.CertificateOfBirthDataCache;
 import id.ipaddr.android.rereso.data.entity.CertificateOfBirthDataEntity;
 import id.ipaddr.android.rereso.data.repository.datasource.CertificateOfBirthDataDataStore;
 import id.ipaddr.android.rereso.domain.model.CertificateOfBirthData;
+import id.ipaddr.android.rereso.domain.model.DocumentRequired;
 import io.reactivex.Observable;
 
 /**
@@ -44,5 +45,5 @@ public class DiskCertificateOfBirthDataDataStore implements CertificateOfBirthDa
      @Override public Observable<CertificateOfBirthDataEntity> setCertificateOfBirthDataEntity(@NonNull CertificateOfBirthDataEntity certificateOfBirthDataEntity){
          return null;
      }
-}
+ }
 

@@ -43,6 +43,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.ipaddr.android.rereso.R;
+import id.ipaddr.android.rereso.data.entity.CertificateOfBirthDataEntity;
 import id.ipaddr.android.rereso.domain.model.CertificateOfBirthData;
 import id.ipaddr.android.rereso.domain.model.DocumentRequired;
 import id.ipaddr.android.rereso.presentation.internal.di.components.CertificateOfBirthDataComponent;
@@ -51,6 +52,10 @@ import id.ipaddr.android.rereso.presentation.view.activity.ImageViewActivity;
 import id.ipaddr.android.rereso.presentation.view.adapter.CertificateOfBirthDataDocumentRequiredAdapter;
 import id.ipaddr.android.rereso.util.ImageUtil;
 import id.ipaddr.android.rereso.util.ItemDecorationAlbumColumns;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by iip on 3/30/17.
@@ -61,8 +66,6 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
     private static final String TAG = PhotoDetailFragment.class.getSimpleName();
 
     private List<DocumentRequired> documentRequireds;
-
-
 
     @BindView(R.id.rv_photo_detail)
     RecyclerView mPhotoRecyclerView;
@@ -307,9 +310,11 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
         Log.d(TAG, "onCompleteClicked");
         if (verifyAndSaveImageData()) {
-            saveData();
+//            CertificateOfBirthData certificateOfBirthData = mCertificateOfBirthDataSetDetailPresenter.getCertificateOfBirthData();
+//            mCertificateOfBirthDataSetDetailPresenter.setCertificateOfBirthDataDetail(certificateOfBirthData);
 //            callback.complete();
 //            getActivity().finish();
+            saveImage(mCertificateOfBirthDataSetDetailPresenter.getCertificateOfBirthData());
         }
         else Toast.makeText(getActivity(), "Add detail", Toast.LENGTH_SHORT).show();
     }
@@ -318,6 +323,93 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
         Log.d(TAG, "onBackClicked");
         callback.goToPrevStep();
+    }
+
+    //TODO plese move it to presenter
+    public void saveImage(CertificateOfBirthData cd){
+
+        List<UploadTask> uploadTasks = new ArrayList<>();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+        DocumentRequired householdRecommendationLetter = cd.getHouseholdRecommendationLetter();
+        uploadDocumentRequired(uploadTasks, storageRef, householdRecommendationLetter);
+
+        DocumentRequired familyIdentityCard = cd.getFamilyIdentityCard();
+        uploadDocumentRequired(uploadTasks, storageRef, familyIdentityCard);
+
+        DocumentRequired fatherIdCard = cd.getFatherIdCard();
+        uploadDocumentRequired(uploadTasks, storageRef, fatherIdCard);
+
+        DocumentRequired motherIdCard = cd.getMotherIdCard();
+        uploadDocumentRequired(uploadTasks, storageRef, motherIdCard);
+
+        DocumentRequired maritalCertificateLetter = cd.getMaritalCertificateLetter();
+        uploadDocumentRequired(uploadTasks, storageRef, maritalCertificateLetter);
+
+        DocumentRequired fatherCertificateOfBirth = cd.getFatherCertificateOfBirth();
+        uploadDocumentRequired(uploadTasks, storageRef, fatherCertificateOfBirth);
+
+        DocumentRequired motherCertificateOfBirth = cd.getMotherCertificateOfBirth();
+        uploadDocumentRequired(uploadTasks, storageRef, motherCertificateOfBirth);
+
+        DocumentRequired fatherPassport = cd.getFatherPassport();
+        uploadDocumentRequired(uploadTasks, storageRef, fatherPassport);
+
+        DocumentRequired motherPassport = cd.getMotherPassport();
+        uploadDocumentRequired(uploadTasks, storageRef, motherPassport);
+
+        DocumentRequired firstSpectatorIdCard = cd.getFirstSpectatorIdCard();
+        uploadDocumentRequired(uploadTasks, storageRef, firstSpectatorIdCard);
+
+        DocumentRequired secondSpectatorIdCard = cd.getSecondSpectatorIdCard();
+        uploadDocumentRequired(uploadTasks, storageRef, secondSpectatorIdCard);
+
+        DocumentRequired policeCertificateForUnfamiliyBaby = cd.getPoliceCertificateForUnfamiliyBaby();
+        uploadDocumentRequired(uploadTasks, storageRef, policeCertificateForUnfamiliyBaby);
+
+        DocumentRequired socialServicesCertificateForVulnerableResidents = cd.getSocialServicesCertificateForVulnerableResidents();
+        uploadDocumentRequired(uploadTasks, storageRef, socialServicesCertificateForVulnerableResidents);
+
+        DocumentRequired imgOfCertificateOfBirthForm = cd.getImgOfCertificateOfBirthForm();
+        uploadDocumentRequired(uploadTasks, storageRef, imgOfCertificateOfBirthForm);
+
+        UploadTask[] arrayUploadTasks = new UploadTask[uploadTasks.size()];
+        arrayUploadTasks = uploadTasks.toArray(arrayUploadTasks);
+
+        Observable.fromArray(arrayUploadTasks).doOnNext(new Consumer<UploadTask>() {
+            @Override
+            public void accept(@io.reactivex.annotations.NonNull UploadTask uploadTask) throws Exception {
+                Log.d(TAG, "onSubscribe");
+            }
+        }).subscribe(new Observer<UploadTask>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d(TAG, "onSubscribe");
+            }
+
+            @Override
+            public void onNext(UploadTask uploadTask) {
+                Log.d(TAG, "onNext");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError");
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d(TAG, "onComplete");
+                saveData(cd);
+            }
+        });
+
+    }
+
+    private void uploadDocumentRequired(List<UploadTask> uploadTasks, StorageReference storageRef, DocumentRequired dr){
+        if (dr.getDocumentImageURI() != null) {
+            uploadTasks.add(upload(storageRef, dr));
+        }
     }
 
     private UploadTask upload(StorageReference storageRef, DocumentRequired dr){
@@ -332,6 +424,7 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d(TAG, "onSuccess");
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
                 dr.setDocumentImageURI(downloadUrl.toString());
             }
@@ -339,19 +432,9 @@ public class PhotoDetailFragment extends BaseFragment implements BlockingStep {
         return uploadTask;
     }
 
-    private void saveImage(){
-        List<UploadTask> uploadTasks = new ArrayList<>();
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        for (DocumentRequired dr : documentRequireds){
-            if (dr.getDocumentImageURI() != null)
-                uploadTasks.add(upload(storageRef, dr));
-        }
-    }
-
-    private void saveData(){
-        saveImage();
+    private void saveData(CertificateOfBirthData certificateOfBirthData){
         DatabaseReference dbr = FirebaseDatabase.getInstance().getReference(CertificateOfBirthData.class.getSimpleName());
-        dbr.push().setValue(mCertificateOfBirthDataSetDetailPresenter.getCertificateOfBirthData());
+        dbr.push().setValue(certificateOfBirthData);
     }
 
 }

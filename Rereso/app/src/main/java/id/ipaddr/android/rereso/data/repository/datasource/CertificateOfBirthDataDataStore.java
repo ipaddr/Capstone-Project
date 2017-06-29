@@ -6,6 +6,7 @@ import java.util.List;
 
 import id.ipaddr.android.rereso.data.entity.CertificateOfBirthDataEntity;
 import id.ipaddr.android.rereso.domain.model.CertificateOfBirthData;
+import id.ipaddr.android.rereso.domain.model.DocumentRequired;
 import io.reactivex.Observable;
 
 /**
@@ -38,5 +39,4 @@ public interface CertificateOfBirthDataDataStore {
      * @return
      */
     Observable<CertificateOfBirthDataEntity> setCertificateOfBirthDataEntity(@NonNull CertificateOfBirthDataEntity certificateOfBirthDataEntity);
-
 }

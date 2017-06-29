@@ -1,5 +1,7 @@
 package id.ipaddr.android.rereso.presentation.presenter;
 
+import android.util.Log;
+
 import javax.inject.Inject;
 
 import id.ipaddr.android.rereso.domain.exception.DefaultErrorBundle;
@@ -40,14 +42,6 @@ public class CertificateOfBirthDataSetDetailPresenter implements Presenter {
         mCertificateOfBirthDataModelDataMapper = certificateOfBirthDataModelDataMapper;
     }
 
-    /**
-     * Initializes the presenter by showing/hiding proper views
-     * and retrieving certificate of data details.
-     */
-    public void initialize(){
-        this.setCertificateOfBirthDataDetail();
-    }
-
     @Override
     public void resume() {
 
@@ -64,24 +58,27 @@ public class CertificateOfBirthDataSetDetailPresenter implements Presenter {
         mCertificateOfBirthDataSetDetailView = null;
     }
 
-    private void setCertificateOfBirthDataDetail(){
-        mSetCertificateOfBirthDataDetail.execute(new CertificateOfBirthDataDetailObserver(), null);
+    public void setCertificateOfBirthDataDetail(CertificateOfBirthData certificateOfBirthData){
+        mSetCertificateOfBirthDataDetail.execute(new CertificateOfBirthDataDetailObserver(), certificateOfBirthData);
     }
 
     private final class CertificateOfBirthDataDetailObserver extends DefaultObserver<CertificateOfBirthData> {
         @Override
         public void onError(Throwable exception) {
             super.onError(exception);
+            Log.d(TAG, "onError");
         }
 
         @Override
         public void onNext(CertificateOfBirthData certificateOfBirthData) {
             super.onNext(certificateOfBirthData);
+            Log.d(TAG, "onNext");
         }
 
         @Override
         public void onComplete() {
             super.onComplete();
+            Log.d(TAG, "onComplete");
         }
     }
 

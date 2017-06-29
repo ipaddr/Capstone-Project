@@ -74,7 +74,6 @@ public class CertificateOfBirthDataSetDetailActivity extends BaseActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        fab.setVisibility(View.VISIBLE);
     }
 
     private void initializeInjector() {

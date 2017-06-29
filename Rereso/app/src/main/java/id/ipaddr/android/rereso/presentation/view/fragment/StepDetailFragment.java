@@ -312,6 +312,15 @@ public class StepDetailFragment extends BaseFragment
         llBornHelper.setVisibility(View.VISIBLE);
         tilBabyWeight.setVisibility(View.VISIBLE);
         tilBabyHeight.setVisibility(View.VISIBLE);
+
+        tilName.setHint("Baby Full Name");
+        tilBornLocation.setHint("Baby Born Location");
+        tilBornDay.setHint("Baby Born Day");
+        tilBornDate.setHint("Baby Born Date");
+        tilBornTime.setHint("Baby Born Time");
+        tilBornSeq.setHint("Baby Born Sequence");
+        tilBabyWeight.setHint("Baby Weight");
+        tilBabyHeight.setHint("Baby Height");
     }
 
     private boolean verifyAndSaveBabyData(){
