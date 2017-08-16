@@ -3,6 +3,7 @@ package id.ipaddr.android.rereso;
 import android.support.design.widget.TextInputLayout;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.ViewAssertion;
+import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.espresso.matcher.BoundedMatcher;
@@ -27,7 +28,15 @@ import org.junit.runner.RunWith;
 import id.ipaddr.android.rereso.domain.model.CertificateOfBirthData;
 import id.ipaddr.android.rereso.presentation.view.activity.CertificateOfBirthDataSetDetailActivity;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
+import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
 /**
@@ -116,16 +125,61 @@ public class CertificateOfBirthDataSetDetailActivityTest {
 
     private void addBabyData() {
         Espresso.onView(ViewMatchers.withText("Baby data")).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-        Espresso.onView(ViewMatchers.withParent( ViewMatchers.withParent(Matchers.allOf(ViewMatchers.withId(R.id.til_name), hasTextInputLayoutHintText(Matchers.containsString("Baby Full Name"))))
+
+        Espresso.onView(ViewMatchers.withParent( ViewMatchers.withParent(Matchers.allOf(ViewMatchers.withId(R.id.til_name)
+                , hasTextInputLayoutHintText(Matchers.containsString("Baby Full Name"))))
                 ))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-                .perform(ViewActions.click())
-                .perform(ViewActions.typeText("Meca Alesha Ipfia"))
+                .perform(scrollTo(), ViewActions.click())
+                .perform(scrollTo(), ViewActions.typeText("Meca Alesha Ipfia"))
         ;
-//        Espresso.onView(ViewMatchers.withId(R.id.rg_sex))
+
+        Espresso.onView(allOf(ViewMatchers.withId(R.id.rg_sex), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        Espresso.onView(allOf(ViewMatchers.withId(R.id.rg_sex_rb_female), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), ViewActions.click());
+
+        Espresso.onView(allOf(ViewMatchers.withId(R.id.rg_born_place), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        Espresso.onView(allOf(ViewMatchers.withId(R.id.rg_born_place_rs), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), ViewActions.click());
+
+        Espresso.onView(Matchers.allOf(ViewMatchers.withId(R.id.acet_born_location), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), typeText("jakarta"));
+
+        Espresso.onView(Matchers.allOf(ViewMatchers.withId(R.id.acet_born_day), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), typeText("senin"));
+
+        Espresso.onView(ViewMatchers.withParent( ViewMatchers.withParent(Matchers.allOf(ViewMatchers.withId(R.id.til_born_date)
+                , hasTextInputLayoutHintText(Matchers.containsString("Baby Born Date"))))
+        ))
+//                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                .perform(scrollTo(), ViewActions.click())
+                .perform(scrollTo(), ViewActions.typeText("28/12/1985"))
+        ;
+
+        Espresso.onView(Matchers.allOf(ViewMatchers.withId(R.id.acet_born_time), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), typeText("13:36"));
+
+//        Espresso.onView(allOf(ViewMatchers.withId(R.id.rg_born_type), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
 //                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-//        Espresso.onView(ViewMatchers.withId(R.id.rg_sex_rb_female))
-//                .perform(ViewActions.click());
+
+        Espresso.onView(allOf(ViewMatchers.withId(R.id.rg_born_type_single), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), ViewActions.click());
+
+        Espresso.onView(Matchers.allOf(ViewMatchers.withId(R.id.acet_born_seq), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), typeText("1"));
+
+        Espresso.onView(allOf(ViewMatchers.withId(R.id.rg_born_helper), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        Espresso.onView(allOf(ViewMatchers.withId(R.id.rg_born_helper_docter), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), ViewActions.click());
+
+        Espresso.onView(Matchers.allOf(ViewMatchers.withId(R.id.acet_baby_weight), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), typeText("3"));
+
+        Espresso.onView(Matchers.allOf(ViewMatchers.withId(R.id.acet_baby_height), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+                .perform(scrollTo(), typeText("4"));
     }
 
     private void clickNext(){
